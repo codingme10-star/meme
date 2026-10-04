@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منظم المهام الذكي - ليلة النجوم</title>
+    <!-- استدعاء الخطوط المزخرفة والحديثة -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap');
 
         * {
             box-sizing: border-box;
@@ -13,7 +14,7 @@
 
         body {
             margin: 0;
-            padding: 30px 15px;
+            padding: 25px 15px;
             font-family: 'Cairo', sans-serif;
             background: #030b1e url('2052301f8dd32b0d48a802e0674441c4.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -24,17 +25,17 @@
             min-height: 100vh;
         }
 
-        /* عنوان الصفحة */
+        /* عنوان الصفحة الرئيسي */
         .main-title {
             width: 100%;
-            max-width: 1100px;
+            max-width: 900px;
             text-align: center;
             color: #ffe67b;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 900;
             margin-bottom: 20px;
-            background: rgba(3, 15, 38, 0.8);
-            padding: 18px;
+            background: rgba(3, 15, 38, 0.85);
+            padding: 15px;
             border-radius: 20px;
             border: 2px solid #ffb700;
             backdrop-filter: blur(8px);
@@ -45,6 +46,93 @@
         @keyframes starryGlow {
             0% { text-shadow: 0 0 10px #ffe67b, 0 0 20px #ff9900; border-color: #ffb700; }
             100% { text-shadow: 0 0 25px #ffe67b, 0 0 40px #ffcc00; border-color: #ffe67b; }
+        }
+
+        /* حاوية الساعة والمؤقت (أفقية بجانب بعض) */
+        .widgets-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .widget-box {
+            flex: 1;
+            min-width: 280px;
+            background: rgba(4, 20, 48, 0.88);
+            border: 2px solid #ffaa00;
+            border-radius: 20px;
+            padding: 18px;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6), inset 0 0 10px rgba(255, 170, 0, 0.2);
+        }
+
+        .widget-title {
+            margin: 0 0 10px 0;
+            color: #ffe67b;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        /* الأرقام المزخرفة المضيئة للساعة والمؤقت */
+        .digital-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ffe67b;
+            text-shadow: 0 0 12px #ffaa00, 0 0 25px #ff5500;
+            letter-spacing: 2px;
+            direction: ltr;
+            margin: 10px 0;
+        }
+
+        /* أدوات التحكم بالتايمر */
+        .timer-controls {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .timer-controls input {
+            width: 80px;
+            padding: 8px;
+            background: rgba(2, 9, 23, 0.9);
+            border: 1px solid #ffaa00;
+            border-radius: 8px;
+            color: #ffe67b;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+        }
+
+        .btn-small {
+            background: linear-gradient(45deg, #ff9900, #ffe67b);
+            color: #030b1e;
+            border: none;
+            padding: 8px 14px;
+            font-size: 0.9rem;
+            font-weight: 900;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-small:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 12px rgba(255, 230, 123, 0.8);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ff3333, #ff6666);
+            color: #fff;
         }
 
         /* حاوية إدخال المهام */
@@ -58,18 +146,17 @@
             margin-bottom: 30px;
             backdrop-filter: blur(6px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
         }
 
         .input-section h2 {
             margin-top: 0;
             color: #ffe67b;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         textarea {
             width: 100%;
-            height: 150px;
+            height: 140px;
             background: rgba(2, 9, 23, 0.8);
             border: 1px solid #ffaa00;
             border-radius: 12px;
@@ -97,15 +184,15 @@
             background: linear-gradient(45deg, #ff9900, #ffe67b);
             color: #030b1e;
             border: none;
-            padding: 12px 25px;
-            font-size: 1.1rem;
+            padding: 12px 20px;
+            font-size: 1rem;
             font-weight: 900;
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(255, 170, 0, 0.5);
+            box-shadow: 0 0 15px rgba(255, 170, 0, 0.4);
             flex: 1;
-            min-width: 200px;
+            min-width: 180px;
         }
 
         .btn-action:hover {
@@ -116,11 +203,7 @@
         .btn-clear {
             background: linear-gradient(45deg, #ff3333, #ff6666);
             color: #fff;
-            box-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
-        }
-
-        .btn-clear:hover {
-            box-shadow: 0 0 25px rgba(255, 102, 102, 0.8);
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
         }
 
         /* شبكة عرض الكروت */
@@ -162,7 +245,7 @@
             border-bottom: 2px dashed rgba(255, 230, 123, 0.3);
             padding-bottom: 12px;
             margin-top: 0;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             text-shadow: 0 0 8px rgba(255, 170, 0, 0.8);
         }
 
@@ -222,7 +305,7 @@
             text-shadow: 0 0 10px #ffaa00;
         }
 
-        /* جزيئات النجوم المتطايرة */
+        /* شرارات ونجوم متطايرة */
         .particle {
             position: absolute;
             pointer-events: none;
@@ -242,10 +325,30 @@
 
     <h1 class="main-title">🌌 منظم المهام الذكي - ليلة النجوم 🌌</h1>
 
-    <!-- قسم إدخال النص -->
-    <div class="input-section" id="inputSection">
-        <h2>ضع نص المهام الكامل هنا:</h2>
-        <!-- الخانة فارغة تماماً بشكل افتراضي -->
+    <!-- قسم الساعة والمؤقت (جنباً إلى جنب أفقياً) -->
+    <div class="widgets-container">
+        <!-- مربع الساعة -->
+        <div class="widget-box">
+            <div class="widget-title">🕒 الساعة الآن</div>
+            <div class="digital-number" id="clockDisplay">00:00:00</div>
+        </div>
+
+        <!-- مربع المؤقت (Timer) -->
+        <div class="widget-box">
+            <div class="widget-title">⏳ المؤقت (التايمر)</div>
+            <div class="digital-number" id="timerDisplay">00:00</div>
+            <div class="timer-controls">
+                <input type="number" id="timerMinutes" placeholder="دقائق" min="1" value="25">
+                <button class="btn-small" onclick="startTimer()">▶ ابدأ</button>
+                <button class="btn-small btn-danger" onclick="pauseTimer()">⏸ إيقاف</button>
+                <button class="btn-small" style="background:#aaa;" onclick="resetTimer()">🔄 إعادة</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم إدخال المهام -->
+    <div class="input-section">
+        <h2>أضف نص المهام الكامل هنا:</h2>
         <textarea id="rawTaskText" placeholder="الصح واللصق للمهام بالكامل هنا..."></textarea>
         
         <div class="buttons-container">
@@ -258,16 +361,112 @@
     <div class="tasks-grid" id="tasksContainer"></div>
 
     <script>
-        // عند فتح الصفحة، استرجاع البيانات المحفوظة إن وجدت
+        // ==================== 1. برمجة الساعة الحية ====================
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+
+            // تحويل إلى صيغة 12 ساعة مع AM/PM
+            let ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // الساعة 0 تصبح 12
+
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            document.getElementById('clockDisplay').innerText = `${hours}:${minutes}:${seconds} ${ampm}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock(); // تشغيل أولي فور فتح الصفحة
+
+        // ==================== 2. برمجة المؤقت (Timer) والتنبيه ====================
+        let timerInterval = null;
+        let timerSecondsLeft = 0;
+
+        function startTimer() {
+            if (timerInterval) return; // منع التكرار إذا كان يعمل بالفعل
+
+            if (timerSecondsLeft === 0) {
+                const mins = parseInt(document.getElementById('timerMinutes').value);
+                if (isNaN(mins) || mins <= 0) {
+                    alert('من فضلك أدخل عدد دقائق صحيح!');
+                    return;
+                }
+                timerSecondsLeft = mins * 60;
+            }
+
+            updateTimerDisplay();
+
+            timerInterval = setInterval(() => {
+                timerSecondsLeft--;
+                updateTimerDisplay();
+
+                if (timerSecondsLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    playAlarmSound();
+                    setTimeout(() => {
+                        alert('🔔 انتهى وقت المؤقت بنجاح! خذ استراحة الآن.');
+                    }, 200);
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timerSecondsLeft = 0;
+            document.getElementById('timerDisplay').innerText = "00:00";
+        }
+
+        function updateTimerDisplay() {
+            let m = Math.floor(timerSecondsLeft / 60);
+            let s = timerSecondsLeft % 60;
+            m = m < 10 ? '0' + m : m;
+            s = s < 10 ? '0' + s : s;
+            document.getElementById('timerDisplay').innerText = `${m}:${s}`;
+        }
+
+        // نغمة صوتية ناعمة باستخدام Web Audio API عند انتهاء الوقت
+        function playAlarmSound() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const now = audioCtx.currentTime;
+                const freqs = [523.25, 659.25, 783.99, 1046.50]; // نغمة موسيقية متناغمة
+                
+                freqs.forEach((freq, idx) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.value = freq;
+                    gain.gain.setValueAtTime(0.3, now + idx * 0.15);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.15 + 0.4);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now + idx * 0.15);
+                    osc.stop(now + idx * 0.15 + 0.4);
+                });
+            } catch(e) {
+                console.log('Audio error:', e);
+            }
+        }
+
+        // ==================== 3. برمجة المهام والحفظ التلقائي ====================
         window.onload = () => {
             const savedText = localStorage.getItem('savedTasksText');
             if (savedText) {
                 document.getElementById('rawTaskText').value = savedText;
-                generateSchedule(false); // توليد الجدول بدون إظهار رسالة التنبيه
+                generateSchedule(false);
             }
         };
 
-        // دالة تفكيك النص وترتيب المهام في كروت
         function generateSchedule(isManualClick) {
             const rawText = document.getElementById('rawTaskText').value.trim();
             const container = document.getElementById('tasksContainer');
@@ -278,7 +477,6 @@
                 return;
             }
 
-            // حفظ النص في التخزين المحلي
             localStorage.setItem('savedTasksText', rawText);
 
             const lines = rawText.split('\n');
@@ -308,18 +506,13 @@
 
             if (currentCard) cardsData.push(currentCard);
 
-            // استرجاع الكروت المكتملة من التخزين المحلي
             let completedCards = JSON.parse(localStorage.getItem('completedCards')) || [];
 
-            // بناء عناصر HTML للكروت
             cardsData.forEach(card => {
                 const cardDiv = document.createElement('div');
                 cardDiv.className = 'task-card';
-                
-                // إضافة مُعرف فريد للكارت باسم اليوم والتاريخ لحفظ حالته
                 cardDiv.dataset.title = card.title;
 
-                // إذا كان الكارت محفوظاً كـ "مكتمل"، نعطيه علامة الصح
                 if (completedCards.includes(card.title)) {
                     cardDiv.classList.add('completed');
                 }
@@ -343,7 +536,6 @@
             });
         }
 
-        // دالة التفاعل وعلامة الصح والشرارات وحفظ الحالة
         function toggleComplete(card, event) {
             card.classList.toggle('completed');
             
@@ -351,22 +543,18 @@
             const cardTitle = card.dataset.title;
 
             if (card.classList.contains('completed')) {
-                // حفظ الكارت كـ "مكتمل"
                 if (!completedCards.includes(cardTitle)) {
                     completedCards.push(cardTitle);
                 }
 
-                // إضافة تأثير الجزيئات المتطايرة
                 let rect = card.getBoundingClientRect();
                 for (let i = 0; i < 12; i++) {
                     createParticle(event.clientX - rect.left, event.clientY - rect.top, card);
                 }
             } else {
-                // إزالة الكارت من قائمة المكتملين في حالة إلغاء علامة الصح
                 completedCards = completedCards.filter(title => title !== cardTitle);
             }
 
-            // تحديث التخزين المحلي
             localStorage.setItem('completedCards', JSON.stringify(completedCards));
         }
 
@@ -390,9 +578,8 @@
             setTimeout(() => particle.remove(), 800);
         }
 
-        // دالة لمسح كل البيانات والبدء من جديد
         function clearAll() {
-            if (confirm('هل أنت متأكد أنك تريد مسح جميع المهام؟ لا يمكن التراجع عن هذا الإجراء.')) {
+            if (confirm('هل أنت متأكد أنك تريد مسح جميع المهام والبدء من جديد؟')) {
                 localStorage.removeItem('savedTasksText');
                 localStorage.removeItem('completedCards');
                 document.getElementById('rawTaskText').value = '';
