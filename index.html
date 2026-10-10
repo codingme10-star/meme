@@ -3,587 +3,440 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منظم المهام الذكي - ليلة النجوم</title>
-    <!-- استدعاء الخطوط المزخرفة والحديثة -->
+    <title>الجدول الأسبوعي - ليلة مرصعة بالنجوم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap');
-
-        * {
-            box-sizing: border-box;
+        :root {
+            --bg-dark: #0a1128;
+            --card-bg: rgba(16, 28, 58, 0.85);
+            --border-gold: #d4af37;
+            --text-light: #f3f4f6;
+            --text-gold: #fde047;
+            --accent-blue: #1e3a8a;
         }
 
         body {
-            margin: 0;
-            padding: 25px 15px;
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle, #172554 0%, #030712 100%);
+            color: var(--text-light);
             font-family: 'Cairo', sans-serif;
-            background: #030b1e url('c56335e0d4339b5b1d013e66225f755f.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin: 0;
+            padding: 20px;
             min-height: 100vh;
         }
 
-        /* عنوان الصفحة الرئيسي */
-        .main-title {
-            width: 100%;
+        .container {
             max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header & Title */
+        header {
             text-align: center;
-            color: #ffe67b;
-            font-size: 2.2rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            background: rgba(3, 15, 38, 0.85);
-            padding: 15px;
-            border-radius: 20px;
-            border: 2px solid #ffb700;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 0 25px rgba(255, 183, 0, 0.4);
-            animation: starryGlow 3s infinite alternate ease-in-out;
+            border: 3px solid var(--border-gold);
+            border-radius: 15px;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+            position: relative;
+            margin-bottom: 30px;
         }
 
-        @keyframes starryGlow {
-            0% { text-shadow: 0 0 10px #ffe67b, 0 0 20px #ff9900; border-color: #ffb700; }
-            100% { text-shadow: 0 0 25px #ffe67b, 0 0 40px #ffcc00; border-color: #ffe67b; }
+        h1 {
+            font-family: 'Amiri', serif;
+            font-size: 2.8rem;
+            color: var(--text-gold);
+            margin: 0 0 15px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
         }
 
-        /* حاوية الساعة والمؤقت (أفقية بجانب بعض) */
-        .widgets-container {
-            width: 100%;
-            max-width: 900px;
+        /* Widgets Bar (Clock & Timer) */
+        .widgets-bar {
             display: flex;
+            justify-content: center;
             gap: 20px;
-            justify-content: space-between;
-            margin-bottom: 25px;
             flex-wrap: wrap;
+            margin-top: 15px;
         }
 
         .widget-box {
-            flex: 1;
-            min-width: 280px;
-            background: rgba(4, 20, 48, 0.88);
-            border: 2px solid #ffaa00;
-            border-radius: 20px;
-            padding: 18px;
-            text-align: center;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6), inset 0 0 10px rgba(255, 170, 0, 0.2);
-        }
-
-        .widget-title {
-            margin: 0 0 10px 0;
-            color: #ffe67b;
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid var(--border-gold);
+            border-radius: 10px;
+            padding: 8px 20px;
             font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        /* الأرقام المزخرفة المضيئة للساعة والمؤقت */
-        .digital-number {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: #ffe67b;
-            text-shadow: 0 0 12px #ffaa00, 0 0 25px #ff5500;
-            letter-spacing: 2px;
-            direction: ltr;
-            margin: 10px 0;
-        }
-
-        /* أدوات التحكم بالتايمر */
-        .timer-controls {
+            color: var(--text-gold);
             display: flex;
-            gap: 8px;
-            justify-content: center;
             align-items: center;
-            margin-top: 10px;
-            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: inset 0 0 10px rgba(212, 175, 55, 0.2);
         }
 
-        .timer-controls input {
-            width: 80px;
-            padding: 8px;
-            background: rgba(2, 9, 23, 0.9);
-            border: 1px solid #ffaa00;
-            border-radius: 8px;
-            color: #ffe67b;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            text-align: center;
-            outline: none;
-        }
-
-        .btn-small {
-            background: linear-gradient(45deg, #ff9900, #ffe67b);
-            color: #030b1e;
-            border: none;
-            padding: 8px 14px;
-            font-size: 0.9rem;
-            font-weight: 900;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-small:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 12px rgba(255, 230, 123, 0.8);
-        }
-
-        .btn-danger {
-            background: linear-gradient(45deg, #ff3333, #ff6666);
-            color: #fff;
-        }
-
-        /* حاوية إدخال المهام */
-        .input-section {
-            width: 100%;
-            max-width: 900px;
-            background: rgba(4, 20, 48, 0.88);
-            border: 2px solid #ffaa00;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(6px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        }
-
-        .input-section h2 {
-            margin-top: 0;
-            color: #ffe67b;
-            font-size: 1.2rem;
-        }
-
-        textarea {
-            width: 100%;
-            height: 140px;
-            background: rgba(2, 9, 23, 0.8);
-            border: 1px solid #ffaa00;
+        /* Day Card Structure */
+        .day-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-gold);
             border-radius: 12px;
-            color: #fff;
-            padding: 15px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 0.95rem;
-            resize: vertical;
-            outline: none;
-        }
-
-        textarea:focus {
-            border-color: #ffe67b;
-            box-shadow: 0 0 10px rgba(255, 230, 123, 0.5);
-        }
-
-        .buttons-container {
+            margin-bottom: 20px;
             display: flex;
-            gap: 15px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn-action {
-            background: linear-gradient(45deg, #ff9900, #ffe67b);
-            color: #030b1e;
-            border: none;
-            padding: 12px 20px;
-            font-size: 1rem;
-            font-weight: 900;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(255, 170, 0, 0.4);
-            flex: 1;
-            min-width: 180px;
-        }
-
-        .btn-action:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 25px rgba(255, 230, 123, 0.8);
-        }
-
-        .btn-clear {
-            background: linear-gradient(45deg, #ff3333, #ff6666);
-            color: #fff;
-            box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
-        }
-
-        /* شبكة عرض الكروت */
-        .tasks-grid {
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            justify-content: center;
-        }
-
-        /* تصميم كرت اليوم */
-        .task-card {
-            background: linear-gradient(135deg, rgba(4, 20, 48, 0.88), rgba(8, 30, 68, 0.82));
-            border: 2px solid #ffaa00;
-            border-radius: 24px;
-            padding: 22px;
-            width: 320px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 170, 0, 0.25);
-            position: relative;
+            flex-direction: md-row;
+            justify-content: space-between;
+            align-items: stretch;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             overflow: hidden;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(6px);
+            transition: transform 0.3s ease;
         }
 
-        .task-card::before { content: '✨'; position: absolute; top: 10px; left: 12px; opacity: 0.8; }
-        .task-card::after { content: '🌙'; position: absolute; bottom: 10px; left: 12px; opacity: 0.6; }
-
-        .task-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 204, 0, 0.6);
-            border-color: #ffe67b;
+        .day-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.2);
         }
 
-        .task-card h3 {
-            color: #ffe67b;
-            border-bottom: 2px dashed rgba(255, 230, 123, 0.3);
-            padding-bottom: 12px;
-            margin-top: 0;
-            font-size: 1.2rem;
-            text-shadow: 0 0 8px rgba(255, 170, 0, 0.8);
+        @media (min-width: 768px) {
+            .day-card {
+                flex-direction: row;
+            }
         }
 
-        .task-list {
-            list-style: none;
-            padding: 0;
-            margin: 10px 0 0 0;
-            line-height: 1.8;
+        .tasks-section {
+            flex: 1;
+            padding: 20px;
+            border-left: 2px dashed rgba(212, 175, 55, 0.3);
         }
 
-        .task-list li {
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #e2f1ff;
-            word-break: break-word;
-        }
-
-        /* غطاء الإنجاز والصح المضيء */
-        .checkmark-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(3, 15, 38, 0.93);
+        .day-title-section {
+            width: 220px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-            z-index: 10;
-            border-radius: 22px;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
         }
 
-        .task-card.completed .checkmark-overlay {
-            opacity: 1;
-            visibility: visible;
+        .day-title-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            justify-content: center;
         }
 
-        .checkmark {
-            font-size: 100px;
-            color: #ffe67b;
-            text-shadow: 0 0 20px #ffaa00, 0 0 40px #ffaa00;
-            transform: scale(0) rotate(-45deg);
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .day-name {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: var(--text-gold);
+            margin: 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
 
-        .task-card.completed .checkmark {
-            transform: scale(1) rotate(0deg);
+        /* Task Item */
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            line-height: 1.6;
         }
 
-        .completed-text {
-            color: #ffe67b;
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-top: -10px;
-            text-shadow: 0 0 10px #ffaa00;
+        .task-item input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--border-gold);
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            position: relative;
+            top: 4px;
+            transition: background 0.2s;
         }
 
-        /* شرارات ونجوم متطايرة */
-        .particle {
+        .task-item input[type="checkbox"]:checked {
+            background-color: var(--border-gold);
+        }
+
+        .task-item input[type="checkbox"]:checked::after {
+            content: '✔';
             position: absolute;
-            pointer-events: none;
-            background: #ffe67b;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #ffaa00;
-            animation: particleAnimation 0.8s forwards ease-out;
+            top: -2px;
+            left: 3px;
+            color: #030712;
+            font-size: 14px;
+            font-weight: bold;
         }
 
-        @keyframes particleAnimation {
-            0% { opacity: 1; transform: translate(0, 0) scale(1); }
-            100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(0); }
+        .task-text {
+            flex: 1;
+            transition: color 0.3s, text-decoration 0.3s;
+        }
+
+        .task-item input[type="checkbox"]:checked + .task-text {
+            text-decoration: line-through;
+            color: #94a3b8;
+            opacity: 0.7;
+        }
+
+        /* Day Checkbox Header Style */
+        .day-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 26px;
+            height: 26px;
+            border: 2px solid var(--border-gold);
+            border-radius: 6px;
+            outline: none;
+            cursor: pointer;
+            background: rgba(0,0,0,0.4);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .day-checkbox:checked {
+            background-color: #22c55e;
+            border-color: #4ade80;
+        }
+
+        .day-checkbox:checked::after {
+            content: '✔';
+            position: absolute;
+            top: -1px;
+            left: 5px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Success Message Modal/Banner */
+        #congrats-banner {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #166534, #15803d);
+            border: 3px solid #fde047;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.6);
+            z-index: 1000;
+            text-align: center;
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Decorative stars */
+        .star-dec {
+            color: var(--text-gold);
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
 
-    <h1 class="main-title">🌌 منظم المهام الذكي - ليلة النجوم 🌌</h1>
+    <div id="congrats-banner">🎉 مبروك! تم الانتهاء من مهام الأسبوع بالكامل! 🌟</div>
 
-    <!-- قسم الساعة والمؤقت (جنباً إلى جنب أفقياً) -->
-    <div class="widgets-container">
-        <!-- مربع الساعة -->
-        <div class="widget-box">
-            <div class="widget-title">🕒 الساعة الآن</div>
-            <div class="digital-number" id="clockDisplay">00:00:00</div>
-        </div>
-
-        <!-- مربع المؤقت (Timer) -->
-        <div class="widget-box">
-            <div class="widget-title">⏳ المؤقت (التايمر)</div>
-            <div class="digital-number" id="timerDisplay">00:00</div>
-            <div class="timer-controls">
-                <input type="number" id="timerMinutes" placeholder="دقائق" min="1" value="25">
-                <button class="btn-small" onclick="startTimer()">▶ ابدأ</button>
-                <button class="btn-small btn-danger" onclick="pauseTimer()">⏸ إيقاف</button>
-                <button class="btn-small" style="background:#aaa;" onclick="resetTimer()">🔄 إعادة</button>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>✦ الجــدول الاسـبــوعي ✦</h1>
+            <div class="widgets-bar">
+                <div class="widget-box" id="clock-box">
+                    <span>⏰ الساعة:</span> <span id="live-clock">00:00:00</span>
+                </div>
+                <div class="widget-box" id="timer-box">
+                    <span>⏳ التايمر:</span> <span id="timer-display">25:00</span>
+                    <button onclick="toggleTimer()" id="timer-btn" style="background:var(--border-gold); border:none; padding:2px 8px; border-radius:4px; cursor:pointer; font-weight:bold;">بدء</button>
+                </div>
             </div>
-        </div>
-    </div>
+        </header>
 
-    <!-- قسم إدخال المهام -->
-    <div class="input-section">
-        <h2>أضف نص المهام الكامل هنا:</h2>
-        <textarea id="rawTaskText" placeholder="الصح واللصق للمهام بالكامل هنا..."></textarea>
-        
-        <div class="buttons-container">
-            <button class="btn-action" onclick="generateSchedule(true)">✨ حفظ وترتيب الجدول ✨</button>
-            <button class="btn-action btn-clear" onclick="clearAll()">🗑️ مسح الكل والبدء من جديد</button>
-        </div>
+        <!-- Days Container -->
+        <div id="schedule-container"></div>
     </div>
-
-    <!-- شبكة عرض المهام المرتبة -->
-    <div class="tasks-grid" id="tasksContainer"></div>
 
     <script>
-        // ==================== 1. برمجة الساعة الحية ====================
-        function updateClock() {
-            const now = new Date();
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            let seconds = now.getSeconds();
-
-            // تحويل إلى صيغة 12 ساعة مع AM/PM
-            let ampm = hours >= 12 ? 'PM' : 'AM';
-            hours = hours % 12;
-            hours = hours ? hours : 12; // الساعة 0 تصبح 12
-
-            hours = hours < 10 ? '0' + hours : hours;
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
-
-            document.getElementById('clockDisplay').innerText = `${hours}:${minutes}:${seconds} ${ampm}`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock(); // تشغيل أولي فور فتح الصفحة
-
-        // ==================== 2. برمجة المؤقت (Timer) والتنبيه ====================
-        let timerInterval = null;
-        let timerSecondsLeft = 0;
-
-        function startTimer() {
-            if (timerInterval) return; // منع التكرار إذا كان يعمل بالفعل
-
-            if (timerSecondsLeft === 0) {
-                const mins = parseInt(document.getElementById('timerMinutes').value);
-                if (isNaN(mins) || mins <= 0) {
-                    alert('من فضلك أدخل عدد دقائق صحيح!');
-                    return;
-                }
-                timerSecondsLeft = mins * 60;
+        // بيانات جدول الأسبوع المستوحاة من الصورة
+        const scheduleData = [
+            {
+                day: "السبت",
+                tasks: [
+                    "1 ⟵ محاضرة العربي من 4 الفجر إلى 9 الصبح",
+                    "2 ⟵ مذاكرة المحاضرة من 9:30 الصبح لحد 11 الظهر",
+                    "3 ⟵ حل واجب المحاضرة من 11:45 الظهر لحد 3 العصر"
+                ]
+            },
+            {
+                day: "الأحد",
+                tasks: [
+                    "1 ⟵ محاضرة فيزياء من 4:00 الفجر لحد 9:00 الصبح",
+                    "2 ⟵ مذاكرة المحاضرة من 9:30 لحد 11:30 الظهر، حل واجب المحاضرة من 11:45 لحد 3 العصر",
+                    "3 ⟵ تلخيص جرامر حفظ كلمات من 3:30 لحد 6:00 المغرب",
+                    "4 ⟵ حل واجب الجرامر واجب الكلمات من 6:15 لحد 8:45 الليل"
+                ]
+            },
+            {
+                day: "الاثنين",
+                tasks: [
+                    "1 ⟵ محاضرة الجيولوجيا من 6:00 لحد 9:00 الصبح",
+                    "2 ⟵ مذاكرة المحاضرة الجيولوجيا من 9:30 لحد 11:30 الظهر",
+                    "3 ⟵ حل واجب المحاضرة من 11:45 لحد 3:00 العصر + 2 مصادر"
+                ]
+            },
+            {
+                day: "الثلاثاء",
+                tasks: [
+                    "1 ⟵ محاضرة الكيمياء من 4:00 لحد 9:00 الصبح",
+                    "2 ⟵ مذاكرة المحاضرة من 9:30 لحد 12:00 الظهر",
+                    "3 ⟵ حل الواجب من 12:30 لحد 5:00 العصر ⟵ الترتيب: ك. الافتتان - م. كرة السلة"
+                ]
+            },
+            {
+                day: "الأربع",
+                tasks: [
+                    "1 ⟵ محاضرة فيزياء من 4:00 الفجر لحد 9:00 الصبح",
+                    "2 ⟵ مذاكرة المحاضرة من 9:30 لحد 11:30 الظهر، حل واجب المحاضرة من 11:45 لحد 3 العصر",
+                    "3 ⟵ تلخيص جرامر حفظ كلمات من 3:30 لحد 6:00 المغرب",
+                    "4 ⟵ حل واجب الجرامر واجب الكلمات من 6:15 لحد 8:45 الليل"
+                ]
+            },
+            {
+                day: "الخميس",
+                tasks: [
+                    "1 ⟵ محاضرة الاحياء من 6:00 لحد 9:00 الصبح",
+                    "2 ⟵ مذاكرة المحاضرة الاحياء من 9:30 لحد 11:30 الظهر",
+                    "3 ⟵ حل واجب المحاضرة من 11:45 لحد 3 العصر + 2 مصادر"
+                ]
+            },
+            {
+                day: "الجمعة",
+                tasks: [
+                    "1 ⟵ حل مصدر التفوق كيمياء من 6:00 لحد 9:00 الصبح",
+                    "2 ⟵ حل مصدر الامتحان فيزياء من 9:30 لحد 11:30",
+                    "3 ⟵ حل مصدرين الامتحان والكيان عربي من 1:30 لحد 4:30 العصر",
+                    "4 ⟵ حل مصدر جغري جيولوجيا واحياء من 5:00 لحد 8:00 الليل"
+                ]
             }
+        ];
 
-            updateTimerDisplay();
+        // بناء محتوى الجدول تلقائياً
+        const container = document.getElementById('schedule-container');
 
-            timerInterval = setInterval(() => {
-                timerSecondsLeft--;
-                updateTimerDisplay();
+        scheduleData.forEach((dayObj, dayIndex) => {
+            const card = document.createElement('div');
+            card.className = 'day-card';
+            card.id = `day-card-${dayIndex}`;
 
-                if (timerSecondsLeft <= 0) {
-                    clearInterval(timerInterval);
-                    timerInterval = null;
-                    playAlarmSound();
-                    setTimeout(() => {
-                        alert('🔔 انتهى وقت المؤقت بنجاح! خذ استراحة الآن.');
-                    }, 200);
-                }
-            }, 1000);
-        }
-
-        function pauseTimer() {
-            clearInterval(timerInterval);
-            timerInterval = null;
-        }
-
-        function resetTimer() {
-            pauseTimer();
-            timerSecondsLeft = 0;
-            document.getElementById('timerDisplay').innerText = "00:00";
-        }
-
-        function updateTimerDisplay() {
-            let m = Math.floor(timerSecondsLeft / 60);
-            let s = timerSecondsLeft % 60;
-            m = m < 10 ? '0' + m : m;
-            s = s < 10 ? '0' + s : s;
-            document.getElementById('timerDisplay').innerText = `${m}:${s}`;
-        }
-
-        // نغمة صوتية ناعمة باستخدام Web Audio API عند انتهاء الوقت
-        function playAlarmSound() {
-            try {
-                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                const now = audioCtx.currentTime;
-                const freqs = [523.25, 659.25, 783.99, 1046.50]; // نغمة موسيقية متناغمة
-                
-                freqs.forEach((freq, idx) => {
-                    const osc = audioCtx.createOscillator();
-                    const gain = audioCtx.createGain();
-                    osc.type = 'sine';
-                    osc.frequency.value = freq;
-                    gain.gain.setValueAtTime(0.3, now + idx * 0.15);
-                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.15 + 0.4);
-                    osc.connect(gain);
-                    gain.connect(audioCtx.destination);
-                    osc.start(now + idx * 0.15);
-                    osc.stop(now + idx * 0.15 + 0.4);
-                });
-            } catch(e) {
-                console.log('Audio error:', e);
-            }
-        }
-
-        // ==================== 3. برمجة المهام والحفظ التلقائي ====================
-        window.onload = () => {
-            const savedText = localStorage.getItem('savedTasksText');
-            if (savedText) {
-                document.getElementById('rawTaskText').value = savedText;
-                generateSchedule(false);
-            }
-        };
-
-        function generateSchedule(isManualClick) {
-            const rawText = document.getElementById('rawTaskText').value.trim();
-            const container = document.getElementById('tasksContainer');
-            container.innerHTML = '';
-
-            if (!rawText) {
-                if (isManualClick) alert('الرجاء إدخال نص المهام أولاً!');
-                return;
-            }
-
-            localStorage.setItem('savedTasksText', rawText);
-
-            const lines = rawText.split('\n');
-            let currentCard = null;
-            let cardsData = [];
-
-            lines.forEach(line => {
-                let trimmed = line.trim();
-                if (!trimmed) return;
-
-                const isSubTask = /^([👨🏻‍💻📚🚀⚡]|\s*-(?!\s))/i.test(trimmed) || 
-                                  trimmed.startsWith('الجديد:') || 
-                                  trimmed.startsWith('التراكمات:') || 
-                                  trimmed.startsWith('التطوير:') || 
-                                  trimmed.startsWith('المراجعة السريعة:');
-
-                if (!isSubTask) {
-                    if (currentCard) cardsData.push(currentCard);
-                    currentCard = { title: trimmed, items: [] };
-                } else {
-                    if (!currentCard) {
-                        currentCard = { title: '📅 جدول المهام', items: [] };
-                    }
-                    currentCard.items.push(trimmed);
-                }
-            });
-
-            if (currentCard) cardsData.push(currentCard);
-
-            let completedCards = JSON.parse(localStorage.getItem('completedCards')) || [];
-
-            cardsData.forEach(card => {
-                const cardDiv = document.createElement('div');
-                cardDiv.className = 'task-card';
-                cardDiv.dataset.title = card.title;
-
-                if (completedCards.includes(card.title)) {
-                    cardDiv.classList.add('completed');
-                }
-
-                cardDiv.onclick = (e) => toggleComplete(cardDiv, e);
-
-                let itemsHTML = card.items.map(item => `<li>${item}</li>`).join('');
-
-                cardDiv.innerHTML = `
-                    <div class="checkmark-overlay">
-                        <div class="checkmark">✔</div>
-                        <div class="completed-text">تم الإنجاز بنجاح! ✨</div>
+            // مهام اليوم
+            let tasksHtml = '<div class="tasks-section">';
+            dayObj.tasks.forEach((task, taskIndex) => {
+                tasksHtml += `
+                    <div class="task-item">
+                        <input type="checkbox" id="task-${dayIndex}-${taskIndex}" onchange="checkDayStatus(${dayIndex})">
+                        <label class="task-text" for="task-${dayIndex}-${taskIndex}">${task}</label>
                     </div>
-                    <h3>${card.title}</h3>
-                    <ul class="task-list">
-                        ${itemsHTML}
-                    </ul>
                 `;
-
-                container.appendChild(cardDiv);
             });
+            tasksHtml += '</div>';
+
+            // عنوان اليوم مع مربع الصح الخاص به
+            let titleHtml = `
+                <div class="day-title-section">
+                    <div class="day-title-content">
+                        <input type="checkbox" class="day-checkbox" id="day-box-${dayIndex}" disabled title="يتم تحديده تلقائياً عند إتمام كافة مهام اليوم">
+                        <h2 class="day-name">${dayObj.day}</h2>
+                    </div>
+                </div>
+            `;
+
+            card.innerHTML = tasksHtml + titleHtml;
+            container.appendChild(card);
+        });
+
+        // دالة التحقق من إتمام مهام اليوم والأسبوع
+        function checkDayStatus(dayIndex) {
+            const dayObj = scheduleData[dayIndex];
+            let allCompleted = true;
+
+            dayObj.tasks.forEach((_, taskIndex) => {
+                const checkbox = document.getElementById(`task-${dayIndex}-${taskIndex}`);
+                if (!checkbox.checked) {
+                    allCompleted = false;
+                }
+            });
+
+            // تحديث مربع اليوم الرئيسي
+            const dayBox = document.getElementById(`day-box-${dayIndex}`);
+            dayBox.checked = allCompleted;
+
+            // التحقق من إتمام كل أيام الأسبوع
+            checkWeekStatus();
         }
 
-        function toggleComplete(card, event) {
-            card.classList.toggle('completed');
-            
-            let completedCards = JSON.parse(localStorage.getItem('completedCards')) || [];
-            const cardTitle = card.dataset.title;
-
-            if (card.classList.contains('completed')) {
-                if (!completedCards.includes(cardTitle)) {
-                    completedCards.push(cardTitle);
+        function checkWeekStatus() {
+            let weekCompleted = true;
+            scheduleData.forEach((_, dayIndex) => {
+                const dayBox = document.getElementById(`day-box-${dayIndex}`);
+                if (!dayBox.checked) {
+                    weekCompleted = false;
                 }
+            });
 
-                let rect = card.getBoundingClientRect();
-                for (let i = 0; i < 12; i++) {
-                    createParticle(event.clientX - rect.left, event.clientY - rect.top, card);
-                }
+            const banner = document.getElementById('congrats-banner');
+            if (weekCompleted) {
+                banner.style.display = 'block';
             } else {
-                completedCards = completedCards.filter(title => title !== cardTitle);
+                banner.style.display = 'none';
             }
-
-            localStorage.setItem('completedCards', JSON.stringify(completedCards));
         }
 
-        function createParticle(x, y, parent) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            let size = Math.random() * 8 + 4;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.left = x + 'px';
-            particle.style.top = y + 'px';
-            
-            let destinationX = (Math.random() - 0.5) * 180;
-            let destinationY = (Math.random() - 0.5) * 180;
-            
-            particle.style.setProperty('--x', destinationX + 'px');
-            particle.style.setProperty('--y', destinationY + 'px');
-            
-            parent.appendChild(particle);
-            setTimeout(() => particle.remove(), 800);
-        }
+        // الساعة الحية
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('live-clock').innerText = now.toLocaleTimeString('ar-EG');
+        }, 1000);
 
-        function clearAll() {
-            if (confirm('هل أنت متأكد أنك تريد مسح جميع المهام والبدء من جديد؟')) {
-                localStorage.removeItem('savedTasksText');
-                localStorage.removeItem('completedCards');
-                document.getElementById('rawTaskText').value = '';
-                document.getElementById('tasksContainer').innerHTML = '';
+        // التايمر (مؤقت بسيط بَدء/إيقاف)
+        let timerInterval = null;
+        let timeLeft = 25 * 60; // 25 دقيقة افتراضياً
+        let timerRunning = false;
+
+        function toggleTimer() {
+            const btn = document.getElementById('timer-btn');
+            const display = document.getElementById('timer-display');
+
+            if (!timerRunning) {
+                timerRunning = true;
+                btn.innerText = 'إيقاف مؤقت';
+                timerInterval = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        let minutes = Math.floor(timeLeft / 60);
+                        let seconds = timeLeft % 60;
+                        display.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    } else {
+                        clearInterval(timerInterval);
+                        alert('انتهى وقت التايمر! استرح قليلاً 🌟');
+                        timerRunning = false;
+                        btn.innerText = 'بدء';
+                        timeLeft = 25 * 60;
+                    }
+                }, 1000);
+            } else {
+                timerRunning = false;
+                clearInterval(timerInterval);
+                btn.innerText = 'استئناف';
             }
         }
     </script>
